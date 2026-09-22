@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Meimeii 💙</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom animations & glassmorphism */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 3s ease-in-out infinite;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+        }
+        .glass-modal {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+        /* Custom Scrollbar for message and gallery */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+
+    <!-- Background Starlight / Glowing Orbs Effect -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-900/20 blur-[120px]"></div>
+        <div class="absolute top-[30%] right-[-10%] w-[600px] h-[600px] rounded-full bg-indigo-950/30 blur-[150px]"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-sky-950/20 blur-[130px]"></div>
+        <!-- Twinkling Stars -->
+        <div class="absolute top-12 left-20 w-1.5 h-1.5 bg-sky-200 rounded-full animate-ping"></div>
+        <div class="absolute top-36 right-32 w-1 h-1 bg-blue-300 rounded-full animate-pulse"></div>
+        <div class="absolute top-1/2 left-16 w-2 h-2 bg-indigo-200 rounded-full animate-pulse"></div>
+        <div class="absolute bottom-32 right-24 w-1.5 h-1.5 bg-sky-300 rounded-full animate-ping"></div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="relative z-10 w-full py-6 px-6 md:px-12 flex items-center justify-between border-b border-sky-900/20 glass-card">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-sky-400 flex items-center justify-center shadow-lg shadow-sky-500/20">
+                <span class="text-xl">💙</span>
+            </div>
+            <div>
+                <h1 class="font-serif text-xl md:text-2xl font-semibold tracking-wide text-sky-100">For Meimeii</h1>
+                <p class="text-xs text-sky-400 font-medium">A special little corner just for you</p>
+            </div>
+        </div>
+        <div class="hidden sm:flex items-center space-x-2 text-xs font-medium px-3 py-1.5 rounded-full bg-sky-950/60 border border-sky-800/40 text-sky-300">
+            <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+            <span>Made with love</span>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 max-w-5xl mx-auto px-4 py-10 md:py-16 w-full flex-grow flex flex-col items-center justify-center space-y-16">
+
+        <!-- Hero Section: Envelope & Opening Prompt -->
+        <section class="flex flex-col items-center text-center space-y-6 w-full">
+            <div class="space-y-2">
+                <span class="text-sky-400 text-sm uppercase tracking-widest font-semibold">Tap to Open</span>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-sky-50">A Message For You</h2>
+                <p class="text-slate-300 text-sm md:text-base max-w-md mx-auto">Click on the envelope below whenever you're ready to read what's inside.</p>
+            </div>
+
+            <!-- Envelope Container -->
+            <div id="envelope-trigger" class="group relative cursor-pointer my-4 transition-transform duration-300 hover:scale-105 animate-float" onclick="openMessageModal()">
+                <!-- Glow Effect behind envelope -->
+                <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/30 to-sky-400/30 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500"></div>
+                
+                <!-- Envelope Body -->
+                <div class="relative w-72 sm:w-80 h-48 sm:h-52 bg-gradient-to-br from-slate-900 to-blue-950 rounded-2xl border-2 border-sky-500/40 shadow-2xl shadow-sky-950/80 flex flex-col items-center justify-center overflow-hidden p-6">
+                    <!-- Envelope Flap / Top design -->
+                    <div class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-blue-900/60 to-transparent clip-path-flap border-b border-sky-500/30 pointer-events-none"></div>
+                    
+                    <!-- Envelope Seal Stamp -->
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-sky-400 shadow-lg shadow-sky-500/40 flex items-center justify-center border-2 border-sky-200/50 z-10 group-hover:rotate-12 transition-transform duration-300">
+                        <span class="text-2xl">💌</span>
+                    </div>
+
+                    <div class="mt-4 z-10 text-center">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-sky-300 bg-sky-950/80 px-3 py-1 rounded-full border border-sky-700/50">Open Letter</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section structured with work-items -->
+        <section class="w-full max-w-4xl glass-card rounded-3xl p-6 md:p-8 shadow-2xl border border-sky-500/20 space-y-6">
+            <div class="border-b border-sky-900/40 pb-4">
+                <h3 class="font-serif text-2xl font-semibold text-sky-100 flex items-center gap-2">
+                    <span>📸</span> Our Photo Gallery
+                </h3>
+                <p class="text-xs md:text-sm text-slate-300 mt-1">Click any memory to view it up close.</p>
+            </div>
+
+            <!-- Gallery Grid using work-item structure (using 'pics/' folder) -->
+            <div class="gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                
+                <div class="work-item group cursor-pointer bg-slate-900/80 border border-sky-500/20 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:border-sky-400/50" onclick="openPopup('pics/7dcce088-b8f3-4508-97ba-8c02a9dd533f.jpg', 'Araw ng Kagitingan - April 09, 2026')">
+                    <div class="w-full h-48 overflow-hidden bg-slate-950">
+                        <img src="pics/7dcce088-b8f3-4508-97ba-8c02a9dd533f.jpg" alt="So cute with your bear filter 🐻💙" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="text-xs text-slate-400 mt-1">So cute with your bear filter 🐻💙</p>
+                    </div>
+                </div>
+                
+                <div class="work-item group cursor-pointer bg-slate-900/80 border border-sky-500/20 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:border-sky-400/50" onclick="openPopup('pics/be9dc124-befc-45e6-9849-c441787941b2.jpg', 'Labor Day Tribute - May 1, 2026')">
+                    <div class="w-full h-48 overflow-hidden bg-slate-950">
+                        <img src="pics/be9dc124-befc-45e6-9849-c441787941b2.jpg" alt="'Fun times together! ✌️✨" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="text-xs text-slate-400 mt-1">'Fun times together! ✌️✨</p>
+                    </div>
+                </div>
+
+                <div class="work-item group cursor-pointer bg-slate-900/80 border border-sky-500/20 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:border-sky-400/50" onclick="openPopup('pics/73b1aa9b-ef4a-4b42-a057-38652d4b7527.jpg', 'Maundy Thursday - April 2, 2026')">
+                    <div class="w-full h-48 overflow-hidden bg-slate-950">
+                        <img src="pics/73b1aa9b-ef4a-4b42-a057-38652d4b7527.jpg" alt="With the cute little kitten 🐾" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="text-xs text-slate-400 mt-1">With the cute little kitten 🐾</p>
+                    </div>
+                </div>
+
+                <div class="work-item group cursor-pointer bg-slate-900/80 border border-sky-500/20 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:border-sky-400/50" onclick="openPopup('pics/d39b087f-cd2e-4fc8-ac47-8f8946467eb3.jpg', 'Mother\'s Day - May 10, 2026')">
+                    <div class="w-full h-48 overflow-hidden bg-slate-950">
+                        <img src="pics/d39b087f-cd2e-4fc8-ac47-8f8946467eb3.jpg" alt="My favorite person 💙" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-4 text-center">
+                        <p class="text-xs text-slate-400 mt-1">My favorite person 💙
+</p>
+                    </div>
+                </div> 
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full py-6 text-center text-xs text-slate-400 border-t border-sky-900/20 glass-card">
+        <p>© 2026 For Meimeii 💙 All rights reserved.</p>
+    </footer>
+
+    <!-- POPUP MODAL FOR MESSAGE & BOUQUET -->
+    <div id="message-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div id="modal-content" class="glass-modal w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl border border-sky-500/30 transform scale-95 transition-all duration-300 max-h-[90vh] overflow-y-auto relative">
+            
+            <!-- Close Button -->
+            <button onclick="closeMessageModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-900/80 border border-sky-500/30 flex items-center justify-center text-sky-300 hover:bg-sky-900 hover:text-white transition-colors">
+                ✕
+            </button>
+
+            <div class="flex flex-col items-center space-y-6">
+                
+                <!-- Blue Flower Bouquet SVG Illustration -->
+                <div class="w-40 h-40 sm:w-48 sm:h-48 relative flex items-center justify-center bg-blue-950/40 rounded-2xl border border-sky-500/20 p-2 animate-pulse-soft shadow-lg shadow-sky-950">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_0_15px_rgba(56,189,248,0.4)]">
+                        <!-- Stems -->
+                        <path d="M100 130 L100 170" stroke="#047857" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M100 140 L80 175" stroke="#047857" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M100 140 L120 175" stroke="#047857" stroke-width="3" stroke-linecap="round"/>
+                        
+                        <!-- Ribbon / Wrap -->
+                        <path d="M85 150 Q100 160 115 150 L110 175 Q100 180 90 175 Z" fill="#38bdf8" opacity="0.8"/>
+                        <path d="M75 145 C80 140 90 150 95 155" fill="none" stroke="#bae6fd" stroke-width="3"/>
+                        <path d="M125 145 C120 140 110 150 105 155" fill="none" stroke="#bae6fd" stroke-width="3"/>
+
+                        <!-- Blue Flowers (Petals & Centers) -->
+                        <g transform="translate(100, 75)">
+                            <circle cx="0" cy="-18" r="12" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="16" cy="-8" r="12" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="16" cy="12" r="12" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="0" cy="18" r="12" fill="#93c5fd" opacity="0.9"/>
+                            <circle cx="-16" cy="12" r="12" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="-16" cy="-8" r="12" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="0" cy="0" r="8" fill="#e0f2fe"/>
+                        </g>
+
+                        <g transform="translate(65, 95)">
+                            <circle cx="0" cy="-14" r="10" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="12" cy="-6" r="10" fill="#93c5fd" opacity="0.9"/>
+                            <circle cx="8" cy="10" r="10" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="-8" cy="10" r="10" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="-12" cy="-6" r="10" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="0" cy="0" r="6" fill="#e0f2fe"/>
+                        </g>
+
+                        <g transform="translate(135, 95)">
+                            <circle cx="0" cy="-14" r="10" fill="#93c5fd" opacity="0.9"/>
+                            <circle cx="12" cy="-6" r="10" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="8" cy="10" r="10" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="-8" cy="10" r="10" fill="#93c5fd" opacity="0.9"/>
+                            <circle cx="-12" cy="-6" r="10" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="0" cy="0" r="6" fill="#e0f2fe"/>
+                        </g>
+
+                        <g transform="translate(75, 130)">
+                            <circle cx="0" cy="-12" r="9" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="10" cy="-4" r="9" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="6" cy="8" r="9" fill="#93c5fd" opacity="0.9"/>
+                            <circle cx="-6" cy="8" r="9" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="-10" cy="-4" r="9" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="0" cy="0" r="5" fill="#e0f2fe"/>
+                        </g>
+
+                        <g transform="translate(125, 130)">
+                            <circle cx="0" cy="-12" r="9" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="10" cy="-4" r="9" fill="#93c5fd" opacity="0.9"/>
+                            <circle cx="6" cy="8" r="9" fill="#38bdf8" opacity="0.9"/>
+                            <circle cx="-6" cy="8" r="9" fill="#60a5fa" opacity="0.9"/>
+                            <circle cx="-10" cy="-4" r="9" fill="#93c5fd" opacity="0.9"/>
+                            <circle cx="0" cy="0" r="5" fill="#e0f2fe"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Exact Message Content -->
+                <div class="space-y-4 text-center">
+                    <h3 class="font-serif text-2xl font-bold text-sky-100">For Meimeii 💙</h3>
+                    <div class="bg-slate-900/80 p-5 rounded-2xl border border-sky-500/20 text-left shadow-inner">
+                        <p class="text-sm md:text-base text-slate-200 leading-relaxed font-normal whitespace-pre-line">
+heloooo, meimeii!! just want to let you know how much i love you. keep doing your best, i'll be here supporting you always po. is everything okay po?? i'll be waiting for you to talk when ur ready na po, no pressure po. you don't have to force yourself to talk if you're not ready yet, take your time lang po. i'm here alwayss for you, and i'll listen to you without judging you. you don't have to face anything alone, okayy? just remember that i'm here, and i won't leave you alone when things get hard. i love you alwayss, meimeii.</p>
+                    </div>
+                </div>
+
+                <!-- Action Button inside Modal -->
+                <button onclick="closeMessageModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-semibold text-sm shadow-lg shadow-sky-600/30 transition-all">
+                    Close Letter
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GENERAL IMAGE PREVIEW POPUP MODAL -->
+    <div id="image-popup-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="glass-modal w-full max-w-xl rounded-3xl p-6 shadow-2xl border border-sky-500/30 relative text-center space-y-4">
+            <button onclick="closePopup()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-900/80 border border-sky-500/30 flex items-center justify-center text-sky-300 hover:bg-sky-900 hover:text-white transition-colors z-10">
+                ✕
+            </button>
+            <div class="w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-slate-950 flex items-center justify-center border border-sky-500/20">
+                <img id="popup-img" src="" alt="Enlarged View" class="w-full h-full object-contain">
+            </div>
+            <h4 id="popup-title" class="font-serif text-lg font-semibold text-sky-100"></h4>
+            <button onclick="closePopup()" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition-all">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript for Modals & Interactive Functions -->
+    <script>
+        // Letter Message Modal Functions
+        function openMessageModal() {
+            const modal = document.getElementById('message-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+        }
+
+        function closeMessageModal() {
+            const modal = document.getElementById('message-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+        }
+
+        // Image Work Item Popup Functions
+        function openPopup(imageSrc, titleText) {
+            const modal = document.getElementById('image-popup-modal');
+            const img = document.getElementById('popup-img');
+            const title = document.getElementById('popup-title');
+
+            img.src = imageSrc;
+            title.textContent = titleText;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closePopup() {
+            const modal = document.getElementById('image-popup-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // Close modals when clicking backdrop
+        document.getElementById('message-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeMessageModal();
+        });
+        document.getElementById('image-popup-modal').addEventListener('click', function(e) {
+            if (e.target === this) closePopup();
+        });
+    </script>
+</body>
+</html>
